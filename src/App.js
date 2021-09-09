@@ -13,13 +13,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    filterHandler();
-    saveLocalTodos();
-  }, [todos, status, filterHandler, saveLocalTodos]);
-
-  
-
-  function filterHandler() {
+    function filterHandler() {
     if (status === "completed") {
       setFilteredTodos(todos.filter((todo) => todo.completed === true));
     } else if (status === "uncompleted") {
@@ -28,11 +22,18 @@ function App() {
       setFilteredTodos(todos);
     }
   }
-
-  //Saving todos in local storage
+  filterHandler();
   function saveLocalTodos() {
       localStorage.setItem("todos", JSON.stringify(todos));
   }
+  saveLocalTodos();
+  }, [todos, status]);
+
+  
+  
+
+  //Saving todos in local storage
+  
   function getLocalTodos() {
     if(localStorage.getItem("todos" === null)) {
       localStorage.setItem("todos", JSON.stringify([]));
