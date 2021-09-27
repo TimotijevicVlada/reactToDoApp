@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Form from "./components/Form.js";
 import TodoList from "./components/TodoList.js";
 
@@ -7,13 +7,31 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [status, setStatus] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState([]);
+  
+  //Solved problem with dependencies
+  const tempSaveTodos = useRef();
+  const tempFilterHandler = useRef();
+
+  function getLocalTodos() {
+    if (localStorage.getItem("todos" === null)) {
+      localStorage.setItem("todos", JSON.stringify([]));
+    } else {
+      const todoLocal = JSON.parse(localStorage.getItem("todos"));
+      setTodos(todoLocal);
+    }
+  }
 
   useEffect(() => {
-    getLocalTodos()
+    getLocalTodos();
   }, []);
 
-  useEffect(() => {
-    function filterHandler() {
+
+  //Saving todos in local storage
+    function saveLocalTodos() {
+      localStorage.setItem("todos", JSON.stringify(todos));
+  }
+
+  function filterHandler() {
     if (status === "completed") {
       setFilteredTodos(todos.filter((todo) => todo.completed === true));
     } else if (status === "uncompleted") {
@@ -22,26 +40,15 @@ function App() {
       setFilteredTodos(todos);
     }
   }
-  filterHandler();
-  function saveLocalTodos() {
-      localStorage.setItem("todos", JSON.stringify(todos));
-  }
-  saveLocalTodos();
-  }, [todos, status]);
 
-  
-  
+  //Solved problem with dependencies
+  tempSaveTodos.current = saveLocalTodos;
+  tempFilterHandler.current = filterHandler;
 
-  //Saving todos in local storage
-  
-  function getLocalTodos() {
-    if(localStorage.getItem("todos" === null)) {
-      localStorage.setItem("todos", JSON.stringify([]));
-    }else {
-     const todoLocal = JSON.parse(localStorage.getItem("todos"));
-     setTodos(todoLocal);
-    }
-  }
+  useEffect(() => {
+    tempSaveTodos.current();
+    tempFilterHandler.current();
+  }, [todos, status, filteredTodos]);
 
   return (
     <div>
