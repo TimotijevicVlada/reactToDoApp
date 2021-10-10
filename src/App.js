@@ -48,7 +48,7 @@ function App() {
   useEffect(() => {
     tempSaveTodos.current();
     tempFilterHandler.current();
-  }, [todos, status, filteredTodos]);
+  }, [todos, status]);
 
   return (
     <div>
