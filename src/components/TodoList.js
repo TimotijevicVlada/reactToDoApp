@@ -7,7 +7,7 @@ function TodoList({ todos, setTodos, filteredTodos }) {
   return (
     <div className="todo-container">
       <ul className="todo-list">
-        {filteredTodos === null ? <h1 className="no_todos">You don't have any Todos..</h1> : filteredTodos.map(todo => (
+        {filteredTodos === null ? <h1 className="no_todos">You don't have any Todos..</h1> : [...filteredTodos].map(todo => (
           <Todo
             setTodos={setTodos}
             todos={todos}
