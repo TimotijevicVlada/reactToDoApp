@@ -96,6 +96,10 @@ form button:hover {
   text-decoration: line-through;
   opacity: 0.5;
 }
+.no_todos {
+  text-align: center;
+  padding: 40px 0px;
+}
 
 /*CUSTOM SELECTOR */
 select {

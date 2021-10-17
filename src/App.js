@@ -7,6 +7,9 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [status, setStatus] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState([]);
+
+ 
+  
   
   //Solved problem with dependencies
   const tempSaveTodos = useRef();
