@@ -9,6 +9,7 @@ body {
   font-family: "Poppins", sans-serif;
   min-height: 100vh;
 }
+
 header {
   font-size: 1.5rem;
   color: black;
@@ -19,6 +20,9 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+form .input_area {
+  display: flex;
 }
 form input,
 form button {
@@ -50,7 +54,7 @@ form button:hover {
   list-style: none;
 }
 .todo {
-  margin: 0.5rem;
+  margin: 10px 0px;
   background: white;
   font-size: 1.5rem;
   color: black;
@@ -141,4 +145,32 @@ select {
 ::placeholder {
   font-size: 1.5rem;
   color: lightgray;
+}
+
+@media screen and (max-width: 500px) {
+  header {
+    font-size: 1.2rem;
+  }
+  form {
+   flex-direction: column;
+  }
+  form .input_area {
+    width: 95%;
+  }
+  form .input_area input {
+    font-size: 18px;
+    width: 90%;
+  }
+  form .input_area input::placeholder {
+    font-size: 18px;
+  }
+  .todo {
+    font-size: 18px;
+  }
+  .todo-list {
+    width: 95%;
+  }
+  .todo li {
+    overflow: hidden;
+  }
 }

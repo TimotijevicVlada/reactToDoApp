@@ -21,7 +21,8 @@ function Form({ setInputText, inputText, setTodos, todos, setStatus }) {
   }
   return (
     <form>
-      <input
+      <div className="input_area">
+        <input
         onChange={inputTextHandler}
         value={inputText}
         type="text"
@@ -31,6 +32,7 @@ function Form({ setInputText, inputText, setTodos, todos, setStatus }) {
       <button onClick={submitTodoHandler} className="todo-button" type="submit">
         <i className="fas fa-plus-square"></i>
       </button>
+      </div>
       <div className="select">
         <select onChange={statusHandler} name="todos" className="filter-todo">
           <option value="all">All</option>

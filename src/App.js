@@ -54,7 +54,7 @@ function App() {
   }, [todos, status]);
 
   return (
-    <div>
+    <div className="App">
       <header>
         <h1>Vladimir's Todo list</h1>
       </header>
